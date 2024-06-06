@@ -4,6 +4,7 @@ set -eux
 
 fine_builder=${fine_builder-"fine_builder"}
 
+set +e
 exist_fine_builder=$(docker buildx ls | grep "fine_builder")
 
 if [ -z "$exist_fine_builder" ]; then
@@ -12,6 +13,7 @@ if [ -z "$exist_fine_builder" ]; then
 else
   echo "using exist buildx instance $fine_builder"
 fi
+set -e
 
 target_project=${target_project-"yaohwu"}
 
