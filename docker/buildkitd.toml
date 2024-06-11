@@ -1,0 +1,7 @@
+# https://docs.docker.com/build/buildkit/configure/
+
+# https://gist.github.com/yaohwu/f72af06c5be3e84b048ce7e8d165cac8
+
+[registry."docker.io"]
+  mirrors = ["6pdsvoga.mirror.aliyuncs.com","bvpm92tn.mirror.aliyuncs.com","docker.nju.edu.cn","mirror.baidubce.com","dockerproxy.com","docker.m.daocloud.io"]
+
