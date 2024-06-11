@@ -7,6 +7,8 @@ single_merged_plan="single"
 plan=${plan:-"$multi_plan"}
 app_name_suffix=${app_name_suffix:-"app"}
 
+config_file_folder="/Users/yaohwu/buildx/config"
+
 echo "using plan [$plan] to build docker image, supported plans: [$multi_plan,$single_merged_plan]"
 
 set -eux
@@ -18,9 +20,10 @@ exist_fine_builder=$(docker buildx ls | grep "fine_builder")
 
 if [ -z "$exist_fine_builder" ]; then
   echo "create a buildx instance $fine_builder"
-  cp buildkitd.toml /etc/buildkitd.toml
-  cat /etc/buildkitd.toml
-  docker buildx create --name $fine_builder --driver docker-container --config /etc/buildkitd.toml
+  mkdir -p $config_file_folder
+  cp buildkitd.toml $config_file_folder/buildkitd.toml
+  cat $config_file_folder/buildkitd.toml
+  docker buildx create --name $fine_builder --driver docker-container --config $config_file_folder/buildkitd.toml
 else
   echo "using exist buildx instance $fine_builder"
 fi
